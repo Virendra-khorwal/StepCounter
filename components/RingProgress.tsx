@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import SVG, { Circle } from "react-native-svg";
+import SVG, { Circle, CircleProps } from "react-native-svg";
 import Animated, {
   useAnimatedProps,
   useSharedValue,
@@ -27,6 +27,17 @@ const RingProgress = ({
 
   const fill = useSharedValue(0);
 
+  const circleDefaultProps : CircleProps = {
+    r: innerRadius,
+    cx: radius,
+    cy: radius,
+    stroke: color,
+    strokeWidth: strokeWidth,
+    originX: radius,
+    originY: radius,
+    strokeLinecap :"round",
+  };
+
   useEffect(() => {
     fill.value = withTiming(progress, { duration: 1500 });
   }, [progress]);
@@ -44,24 +55,10 @@ const RingProgress = ({
       }}
     >
       <SVG>
-        <Circle
-          r={innerRadius}
-          cx={radius}
-          cy={radius}
-          stroke={color}
-          strokeWidth={strokeWidth}
-          opacity={0.2}
-        />
+        <Circle {...circleDefaultProps} opacity={0.2} />
         <AnimatedCircle
           animatedProps={animatedProps}
-          originX={radius}
-          originY={radius}
-          r={innerRadius}
-          cx={radius}
-          cy={radius}
-          stroke={color}
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
+          {...circleDefaultProps}
           rotation={-90}
         />
       </SVG>
