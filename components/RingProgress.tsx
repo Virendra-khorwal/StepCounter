@@ -5,6 +5,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { Ionicons } from "@expo/vector-icons";
 import { useEffect } from "react";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -62,10 +63,16 @@ const RingProgress = ({
           rotation={-90}
         />
       </SVG>
+      <Ionicons name="arrow-forward-outline" size={strokeWidth * 0.8} color="black" style={[styles.arrowStyle, {top: strokeWidth*0.1}]} />
     </View>
   );
 };
 
 export default RingProgress;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  arrowStyle: {
+    position: "absolute",
+    alignSelf: "center",
+  }
+});
