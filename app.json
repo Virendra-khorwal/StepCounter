@@ -21,10 +21,31 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permissions.health.READ_STEPS",
+        "android.permissions.health.READ_FLOORS_CLIMBED",
+        "android.permissions.health.READ_DISTANCE"
+      ],
+      "package": "com.virendra.stepCounter"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "react-native-health-connect",
+      "./androidManifestPlugin.js",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "buildToolsVersion": "33.0.0",
+            "minSdkVersion": 26
+          }
+        }
+      ]
+    ]
   }
 }
